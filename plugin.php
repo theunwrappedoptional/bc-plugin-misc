@@ -12,8 +12,6 @@
  *
  */
 
-//TO DO: Install prettier, lint, etc... (section 2: 14-15-16-17)
-
  function bc_plugin_boilerplate_enqueue_assets() {
 
     $asset_file = include(plugin_dir_path( __FILE__ ).'build/index.asset.php');
