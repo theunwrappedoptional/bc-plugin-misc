@@ -1,5 +1,5 @@
 {
-	"name": "bc-plugin-boilerplate",
+	"name": "bc-plugin-misc",
 	"version": "1.0.0",
 	"description": "",
 	"main": "build/index.js",
@@ -38,6 +38,7 @@
 		"stylelint": "^14.16.1"
 	},
 	"dependencies": {
+		"@wordpress/data": "^9.4.0",
 		"@wordpress/i18n": "^4.33.0"
 	}
 }

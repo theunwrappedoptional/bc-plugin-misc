@@ -16,8 +16,7 @@
 
     $asset_file = include(plugin_dir_path( __FILE__ ).'build/index.asset.php');
 
-    wp_enqueue_script( 'bc_plugin_misc-script', plugins_url('build/index.js', __FILE__), $asset_file['dependencies'], $asset_file['version']);
-    wp_enqueue_style( 'bc_plugin_misc-style', plugins_url('build/index.css', __FILE__));
+    wp_enqueue_script( 'bc-plugin-misc-script', plugins_url('build/index.js', __FILE__), $asset_file['dependencies'], $asset_file['version']);
  }
 
  add_action( 'enqueue_block_editor_assets', 'bc_plugin_misc_enqueue_assets');

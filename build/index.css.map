@@ -1,1 +1,0 @@
-{"version":3,"file":"index.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://bc-plugin-boilerplate/./src/editor.scss"],"sourcesContent":[".editor-styles-wrapper {\n\tbackground-color: rgb(183, 253, 180) !important;\n}\n"],"names":[],"sourceRoot":""}
