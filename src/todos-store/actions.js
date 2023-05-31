@@ -1,11 +1,20 @@
 import { ADD_TODO, POPULATE_TODOS } from './types';
+import { createTodo } from './controls';
+import { dispatch } from '@wordpress/data';
 
-export const addToDo = ( todo ) => {
-	return {
-		type: ADD_TODO,
-		todo,
-	};
-};
+export function* addToDo( title ) {
+	try {
+		const todo = yield createTodo( title );
+		return {
+			type: ADD_TODO,
+			todo,
+		};
+	} catch ( error ) {
+		return dispatch( 'core/notices' ).createErrorNotice(
+			error.message || 'Could not create todo.'
+		);
+	}
+}
 
 export const populateTodos = ( todos ) => {
 	return {

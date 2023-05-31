@@ -14,13 +14,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "populateTodos": () => (/* binding */ populateTodos)
 /* harmony export */ });
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./src/todos-store/types.js");
+/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./controls */ "./src/todos-store/controls.js");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
 
-const addToDo = todo => {
-  return {
-    type: _types__WEBPACK_IMPORTED_MODULE_0__.ADD_TODO,
-    todo
-  };
-};
+
+
+function* addToDo(title) {
+  try {
+    const todo = yield (0,_controls__WEBPACK_IMPORTED_MODULE_1__.createTodo)(title);
+    return {
+      type: _types__WEBPACK_IMPORTED_MODULE_0__.ADD_TODO,
+      todo
+    };
+  } catch (error) {
+    return (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.dispatch)('core/notices').createErrorNotice(error.message || 'Could not create todo.');
+  }
+}
+;
 const populateTodos = todos => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__.POPULATE_TODOS,
@@ -38,6 +49,7 @@ const populateTodos = todos => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createTodo": () => (/* binding */ createTodo),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   "fetchTodos": () => (/* binding */ fetchTodos)
 /* harmony export */ });
@@ -52,6 +64,12 @@ const fetchTodos = () => {
     type: _types__WEBPACK_IMPORTED_MODULE_0__.FETCH_TODOS
   };
 };
+const createTodo = title => {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__.CREATE_TODO,
+    title
+  };
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   FETCH_TODOS() {
     return window.fetch('https://jsonplaceholder.typicode.com/todos?_limit=10').then(response => {
@@ -59,6 +77,27 @@ const fetchTodos = () => {
         return response.json();
       }
       throw new Error('Could not fetch todos');
+    });
+  },
+  CREATE_TODO(_ref) {
+    let {
+      title
+    } = _ref;
+    return window.fetch('https://jasonplaceholder.typicode.com/todos', {
+      method: 'POST',
+      body: JSON.stringify({
+        title,
+        completed: false,
+        userID: 1
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    }).then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Could not create todo');
     });
   }
 });
@@ -197,12 +236,14 @@ const getTodos = state => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ADD_TODO": () => (/* binding */ ADD_TODO),
+/* harmony export */   "CREATE_TODO": () => (/* binding */ CREATE_TODO),
 /* harmony export */   "FETCH_TODOS": () => (/* binding */ FETCH_TODOS),
 /* harmony export */   "POPULATE_TODOS": () => (/* binding */ POPULATE_TODOS)
 /* harmony export */ });
 const ADD_TODO = 'ADD_TODO';
 const FETCH_TODOS = 'FETCH_TODOS';
 const POPULATE_TODOS = 'POPULATE_TODOS';
+const CREATE_TODO = 'CREATE_TODO';
 
 /***/ }),
 
