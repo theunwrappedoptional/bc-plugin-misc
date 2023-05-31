@@ -2,7 +2,7 @@ import { ADD_TODO, POPULATE_TODOS } from './types';
 import { createTodo } from './controls';
 import { dispatch } from '@wordpress/data';
 
-export function* addToDo( title ) {
+export function* addTodo( title ) {
 	try {
 		const todo = yield createTodo( title );
 		return {

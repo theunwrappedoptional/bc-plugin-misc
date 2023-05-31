@@ -10,7 +10,7 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addToDo": () => (/* binding */ addToDo),
+/* harmony export */   "addTodo": () => (/* binding */ addTodo),
 /* harmony export */   "populateTodos": () => (/* binding */ populateTodos)
 /* harmony export */ });
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./src/todos-store/types.js");
@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function* addToDo(title) {
+function* addTodo(title) {
   try {
     const todo = yield (0,_controls__WEBPACK_IMPORTED_MODULE_1__.createTodo)(title);
     return {
@@ -31,7 +31,6 @@ function* addToDo(title) {
     return (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.dispatch)('core/notices').createErrorNotice(error.message || 'Could not create todo.');
   }
 }
-;
 const populateTodos = todos => {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__.POPULATE_TODOS,
@@ -83,7 +82,7 @@ const createTodo = title => {
     let {
       title
     } = _ref;
-    return window.fetch('https://jasonplaceholder.typicode.com/todos', {
+    return window.fetch('https://jsonplaceholder.typicode.com/todos', {
       method: 'POST',
       body: JSON.stringify({
         title,

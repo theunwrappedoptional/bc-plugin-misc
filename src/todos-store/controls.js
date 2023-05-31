@@ -28,9 +28,10 @@ export default {
 				throw new Error( 'Could not fetch todos' );
 			} );
 	},
+
 	CREATE_TODO( { title } ) {
 		return window
-			.fetch( 'https://jasonplaceholder.typicode.com/todos', {
+			.fetch( 'https://jsonplaceholder.typicode.com/todos', {
 				method: 'POST',
 				body: JSON.stringify( {
 					title,
